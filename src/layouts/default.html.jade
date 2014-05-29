@@ -1,0 +1,22 @@
+doctype html
+head
+    title= document.title
+
+    !{ getBlock("meta").toHTML() }
+
+    !{ getBlock("styles").add(['styles/main.css', 'styles/highlight-like-github.css']).toHTML() }
+body
+    .jumbotron.text-center
+        h1= document.title
+        if document.isPost
+            .small #{postDate(document.date)} - #{document.author}
+
+    .container
+        if document.isDraft
+            .alert.alert-warning
+                strong Note:&nbsp;
+                em This is article is a work in progress. And is not completed yet
+
+        article!= content
+
+    !{ getBlock("scripts").toHTML() }
